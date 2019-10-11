@@ -1,3 +1,5 @@
 *.pyc
 data.db
+/venv/*
+.DS_store
 
