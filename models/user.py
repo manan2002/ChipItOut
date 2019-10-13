@@ -12,7 +12,7 @@ class UserModel(UserMixin, db.Model):
     password = db.Column(db.String(80), nullable=False)
 
     def __str__(self):
-        return f'{self.username}'
+        return f'{self.email}'
 
     def save(self):
         db.session.add(self)

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+    <li><a href="#">Home</a></li>
+    <li><a href="#" class = "active">Login/Signup</a></li>
+    <li><a href="#">About</a></li>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="row center">
+    <div class="col s12">
+        <ul class="tabs center`">
+            <li class="tab col s3"><a href="#register">Inbox</a></li>
+            <li class="tab col s3"><a class="active" href="#login">Unread</a></li>
+            
+        </ul>
+    </div>
+    <div id="register" class="col s12">Register</div>
+    <div id="login" class="col s12">Login</div>
+    
+    
+</div>
+{% endblock %}
+
+{% block script%}
+<script>
+
+</script>
+
+{% endblock %}
