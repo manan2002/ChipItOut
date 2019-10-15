@@ -6,40 +6,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-        nav{
-            background : linear-gradient(45deg, rgba(163, 62, 136, 0.4) 0%, rgba(163, 62, 136, 0.4) 12%,rgba(170, 91, 113, 0.4) 12%, rgba(170, 91, 113, 0.4) 16%,rgba(176, 121, 91, 0.4) 16%, rgba(176, 121, 91, 0.4) 21%,rgba(183, 150, 68, 0.4) 21%, rgba(183, 150, 68, 0.4) 46%,rgba(190, 179, 45, 0.4) 46%, rgba(190, 179, 45, 0.4) 53%,rgba(196, 209, 23, 0.4) 53%, rgba(196, 209, 23, 0.4) 94%,rgba(203, 238, 0, 0.4) 94%, rgba(203, 238, 0, 0.4) 100%),linear-gradient(135deg, rgba(200, 199, 213, 0.2) 0%, rgba(200, 199, 213, 0.2) 21%,rgba(202, 162, 196, 0.2) 21%, rgba(202, 162, 196, 0.2) 35%,rgba(204, 126, 179, 0.2) 35%, rgba(204, 126, 179, 0.2) 40%,rgba(205, 89, 162, 0.2) 40%, rgba(205, 89, 162, 0.2) 63%,rgba(207, 53, 145, 0.2) 63%, rgba(207, 53, 145, 0.2) 99%,rgba(209, 16, 128, 0.2) 99%, rgba(209, 16, 128, 0.2) 100%),linear-gradient(90deg, rgb(250, 211, 75) 0%, rgb(250, 211, 75) 2%,rgb(245, 197, 103) 2%, rgb(245, 197, 103) 13%,rgb(240, 183, 132) 13%, rgb(240, 183, 132) 27%,rgb(235, 168, 160) 27%, rgb(235, 168, 160) 56%,rgb(230, 154, 189) 56%, rgb(230, 154, 189) 90%,rgb(225, 140, 217) 90%, rgb(225, 140, 217) 100%)
+        form{
+            width: 100vw;
         }
-        .active{
-            background : rgba(255,255,255, 0.6);
-            color: black;
-        }
-        .active:hover{
-            color: white;
-        }
-        
     </style>
     
 </head>
 
 <body>
-<!-- 
     <nav>
-        <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
-            <ul class="right">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Login/Signup</a></li>
-                <li><a href="#">About</a></li>
-    
-            </ul>
-            
-        </div>
-    </nav>
--->
-    <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper green accent-3">
             <!--<a href="#!" class="brand-logo">Logo</a>-->
-            <ul class="right">
+            <ul class="right black-text flow-text">
                 {%block nav%} {%endblock%}
             </ul>
         </div>

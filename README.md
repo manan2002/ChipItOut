@@ -8,7 +8,7 @@
 ## In progress
 
 
-- One auth template to incorporate both singup and login using tabs.
-- Refactor css and js to proper positions.
+- Working on register template
+- Generating color theme.
 
 

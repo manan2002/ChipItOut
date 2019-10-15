@@ -4,12 +4,12 @@ from models.user import UserModel
 from flask_login import login_user, logout_user, login_required, current_user
 from exts import db
 from helpers import check_email
+from collections import defaultdict
+    
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/auth', methods = ['GET'])
-def authTemplate():
-    return render_template('auth/auth.html')
+
     
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
@@ -58,10 +58,10 @@ def register():
             return redirect(url_for('.login'))
         else:
 
-            data = {'messages' : list()}
-            if not valid_email: data['messages'].append('Please enter a valid email.')
-            if ' ' in pw: data['messages'].append('Password can\'t have spaces')
-            if len(pw) < 8: data['messages'].append('Password should be minimum 8 characters.')
-            if len(name.strip()) < 1: data['messages'].append('Please enter a name.')
-            return jsonify(data)
+            data = defaultdict(lambda : '')
+            if not valid_email: data['email'] = 'Please enter a valid email.'
+            if ' ' in pw: data['pw'] = ('Password can\'t have spaces')
+            if len(pw) < 8: data['pw'] = ('Password should be minimum 8 characters.')
+            if len(name.strip()) < 1: data['name'] = ('Please enter a name.')
+            return render_template('auth/register.html', errors = data)
     return render_template('auth/register.html')
