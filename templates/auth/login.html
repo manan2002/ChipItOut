@@ -1,26 +1,49 @@
-{% extends 'layout.html' %}
+{% extends 'auth/auth-layout.html' %}
 
-{% block body %}
-<div class="row">
-    <div class="col s12">
-        <div class="card-panel valign-wrapper pink lighten-5">
-            <form action="{{url_for('auth.login')}}" method="POST">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input placeholder="EMAIL" type="text" name="email">
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="password" type="password" placeholder="password" name="pw">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12">
-                        <button class="btn">Login!</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+{% block nav %}
+<li><a href="#">Home</a></li>
+<li class = 'active'><a href="#">Login</a></li>
+<li><a href="{{url_for('auth.register')}}">Signup</a></li>
+<li><a href="#">About</a></li>
 {% endblock %}
+
+
+
+    {% block head_text %}
+    <h1 class="white-text">Login!</h1>
+    <p class="flow-text white-text">If you don't have an account. Go to <a href="{{url_for('auth.register')}}"
+            class="red-text text-darken-3">register!</a></p>
+    {% endblock %}
+
+
+    {% block card %}
+    <form action="{{url_for('auth.login')}}" method="POST">
+        
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="email" name="email" id="email">
+                <label for="email">Email</label>
+                {% if 'email' in errors %}
+                <span class="helper-text red-text">{{errors['email']}}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" name="pw">
+                <label for="passwrord">Password</label>
+                {% if 'pw' in errors %}
+                <span class="helper-text red-text">{{errors['pw']}}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn blue waves-effect waves-light" type="submit">Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </div>
+    </form>
+    {% endblock %}
+

@@ -26,16 +26,12 @@ def login():
                     print('user logged in.')
                     return jsonify({'message':'Yay you\'re logged in'})
                 else:
-                    return jsonify({'message':'wrong password!'})
+                    return render_template('auth/login.html', errors = {'pw':'wrong password!'})
             else:
-                return jsonify({'message':'no user with this email address exists.'})
+                return render_template('auth/login.html', errors={'email': 'No user with this email address exists.'})
+                
         else:
-            return jsonify({'message': 'email you entered is invalid'}) 
-
-            #return jsonify({
-            #    'status' : 'yo workin!'
-            #})
-        
+            return render_template('auth/login.html', errors={'email': 'Email you entered is invalid.'})
     
     return render_template('auth/login.html')
 
