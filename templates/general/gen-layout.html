@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
 
-    <link rel = "stylesheet" href = "{{url_for('static', filename = 'styles/global.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/global.css')}}">
     {% block links %}{% endblock %}
 </head>
 
@@ -20,9 +20,9 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+
         {% block body %} {% endblock %}
-    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript">
@@ -30,8 +30,8 @@
             var instances = M.AutoInit();
         });
     </script>
-    {% block scripts %} 
-    
+    {% block scripts %}
+
     {% endblock %}
 
 </body>
