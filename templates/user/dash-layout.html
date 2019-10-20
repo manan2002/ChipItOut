@@ -24,19 +24,22 @@
 
         {% block body %} 
         <div class="row cont">
-            <div class="col s4  sidebar">
-                <div class="card">
-                    <div class="card-title">Yo menu!</div>
+            <div class="col s12 m4 sidebar">
+                <div class="card menu-card">
+                    
                     <div class="card-content">
-                        Menu content
+                        <div class="card-title">Yo menu!</div>
+                        <div id="menu">
+                        {% block menu_items%} {% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col s8  main-area">
+            <div class="col s12 m8  main-area">
                 <div class="card main-card">
-                    <div class="card-title">Yo menu!</div>
                     <div class="card-content">
-                        Menu content
+                        <div class="card-title">Main area</div>
+                        Main content
                     </div>
                 </div>
             </div>
