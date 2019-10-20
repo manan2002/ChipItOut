@@ -15,5 +15,21 @@
 {% endblock %}
 
 {% block main_head %}
-Dashboard
+Welcome, {{user.name}}!
+{% endblock %}
+
+{% block main_content %}
+    {% if user.can_schedule == True%}
+    <p class="light">
+    Seems like you don't have any active pickups scheduled, request one today!</p>
+    <a class="waves-effect waves-light btn modal-trigger" href = "#pickup-form"><i class="material-icons left">cloud</i>Request a pickup!</a>
+    {% endif %}
+    <div id="pickup-form" class="modal">
+        <div class="modal-content">
+            <a href = "#!" class = "modal-close"><i class = "material-icons right black-text">cancel</i></a>
+            <h4>Schedule Pickup!</h4>
+                
+        </div>
+        
+    </div>
 {% endblock %}

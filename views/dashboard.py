@@ -8,14 +8,16 @@ dashboard = Blueprint('dashboard', __name__)
 @dashboard.route('/dash')
 @login_required
 def dash():
-    print(current_user)
-    return render_template('user/dash.html')
+    context = {
+        'user' : current_user
+    }
+    return render_template('user/dash.html', **context)
 
 @dashboard.route('/pickup', methods = ['POST', 'GET'])
 @login_required
 def pickups():
     if request.method == 'POST':
-        pass
+       pass 
 
     return render_template('user/pickups.html')
 
