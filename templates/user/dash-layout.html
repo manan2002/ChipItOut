@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title>Elink</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/global.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles/dash.css')}}">
+    {% block links %}{% endblock %}
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper teal lighten-4">
+            <!--<a href="#!" class="brand-logo">Logo</a>-->
+            <ul class="right black-text flow-text">
+                {%block nav%} {%endblock%}
+            </ul>
+        </div>
+    </nav>
+
+        {% block body %} 
+        <div class="row cont">
+            <div class="col s4  sidebar">
+                <div class="card">
+                    <div class="card-title">Yo menu!</div>
+                    <div class="card-content">
+                        Menu content
+                    </div>
+                </div>
+            </div>
+            <div class="col s8  main-area">
+                <div class="card main-card">
+                    <div class="card-title">Yo menu!</div>
+                    <div class="card-content">
+                        Menu content
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var instances = M.AutoInit();
+        });
+    </script>
+    {% block scripts %}
+
+    {% endblock %}
+
+</body>
+
+</html>

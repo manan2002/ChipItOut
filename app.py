@@ -3,6 +3,7 @@ import click
 from exts import db, login_manager
 from models.user import UserModel
 from views.auth import auth
+from views.dashboard import dashboard
 from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ db.init_app(app)
 Registering blueprints.
 """
 app.register_blueprint(auth)
-
+app.register_blueprint(dashboard)
 
 @app.before_first_request
 def create_db():
