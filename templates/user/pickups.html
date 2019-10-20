@@ -1,0 +1,19 @@
+{% extends "user/dash-layout.html" %}
+
+{% block nav %}
+<li><a href="#">Home</a></li>
+<li><a href="#">Logout</a></li>
+<li class="active"><a href="#">Dashboard</a></li>
+<li><a href="#">About</a></li>
+{% endblock %}
+
+{% block menu_items %}
+<a href="{{url_for('dashboard.dash')}}" class="menu-item">Dashboard</a>
+<a href="#" class="menu-item active-side">All pickups</a>
+<a href="#" class="menu-item">Coupons</a>
+<a href="#" class="menu-item">Settings</a>
+{% endblock %}
+
+{% block main_head %}
+All pickups
+{% endblock %}

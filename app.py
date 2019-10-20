@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template
 import click
 from exts import db, login_manager
 from models.user import UserModel
+from models.pickup import PickupModel
 from views.auth import auth
 from views.dashboard import dashboard
 from werkzeug.security import generate_password_hash
@@ -67,11 +68,25 @@ def listUsers(count):
     for u in users:
         print(u)
 
+
+
 @app.cli.command('restart-db')
 def restartDB():
     db.drop_all()
     db.create_all()
     print('DB restarted.')
+
+
+@app.cli.command('drop-db')
+def restartDB():
+    db.drop_all()
+    print('DB dropped.')
+
+
+@app.cli.command('create-db')
+def restartDB():
+    db.create_all()
+    print('DB created.')
 
 
 

@@ -5,8 +5,17 @@ dashboard = Blueprint('dashboard', __name__)
 
 
 
-@dashboard.route('/home')
+@dashboard.route('/dash')
 @login_required
-def home():
+def dash():
     print(current_user)
     return render_template('user/dash.html')
+
+@dashboard.route('/pickup', methods = ['POST', 'GET'])
+@login_required
+def pickups():
+    if request.method == 'POST':
+        pass
+
+    return render_template('user/pickups.html')
+

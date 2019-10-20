@@ -10,7 +10,7 @@ class UserModel(UserMixin, db.Model):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(300), unique = True, nullable = False)
     password = db.Column(db.String(80), nullable=False)
-
+    pickups = db.relationship('PickupModel', backref='user')
     def __str__(self):
         return f'{self.email}'
 

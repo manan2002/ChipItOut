@@ -24,7 +24,7 @@ def login():
                 if check_password_hash(u.password, pw):
                     login_user(u)
                     print('user logged in.')
-                    return redirect(url_for('dashboard.home'))
+                    return redirect(url_for('dashboard.dash'))
                 else:
                     return render_template('auth/login.html', errors = {'pw':'wrong password!'})
             else:

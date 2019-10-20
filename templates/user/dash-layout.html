@@ -5,8 +5,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename = 'styles/global.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename = 'styles/dash.css')}}">
     {% block links %}{% endblock %}
@@ -24,22 +23,25 @@
 
         {% block body %} 
         <div class="row cont">
-            <div class="col s12 m4 sidebar">
+            <div class="col s12 m3 sidebar">
                 <div class="card menu-card">
                     
                     <div class="card-content">
-                        <div class="card-title">Yo menu!</div>
+                        <div class="card-title"><b>Menu</b></div>
                         <div id="menu">
                         {% block menu_items%} {% endblock %}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col s12 m8  main-area">
+            <div class="col s12 m9  main-area">
                 <div class="card main-card">
                     <div class="card-content">
-                        <div class="card-title">Main area</div>
-                        Main content
+                        <div class="card-title">
+                             {% block main_head %}{% endblock %}   
+                        </div>
+                        {% block main_content %}
+                        {% endblock %}
                     </div>
                 </div>
             </div>
