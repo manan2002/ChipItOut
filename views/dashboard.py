@@ -17,7 +17,7 @@ def dash():
 @login_required
 def pickups():
     if request.method == 'POST':
-       pass 
+        print(dict(request.form))
 
     return render_template('user/pickups.html')
 

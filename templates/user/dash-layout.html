@@ -46,6 +46,41 @@
                 </div>
             </div>
         </div>
+        <div id="pickup-form" class="modal">
+            <div class="modal-content">
+                <a href="#!" class="modal-close"><i class="material-icons right black-text">cancel</i></a>
+                <h4>Schedule Pickup!</h4>
+                <div class="row">
+                    <form class="col s12" action="{{url_for('dashboard.pickups')}}" method="POST">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" disabled selected>Select address</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                                <label>Select address</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" class="materialize-textarea" name = "description"></textarea>
+                                <label for="description">Description of your ewaste</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn blue waves-effect waves-light" type="submit">Schedule!
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+        </div>
         {% endblock %}
     
 
