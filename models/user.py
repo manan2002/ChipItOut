@@ -11,8 +11,10 @@ class UserModel(UserMixin, db.Model):
     email = db.Column(db.String(300), unique = True, nullable = False)
     password = db.Column(db.String(80), nullable=False)
     pickups = db.relationship('PickupModel', backref='user')
+    addresses = db.relationship('AddressModel', backref='user')
     can_schedule = db.Column(db.Boolean, default = True)
     points = db.Column(db.Integer, default = 0)
+    
     def __str__(self):
         return f'{self.email}'
 

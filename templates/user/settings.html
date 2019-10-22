@@ -1,0 +1,35 @@
+{% extends "user/dash-layout.html" %}
+
+{% block nav %}
+<li><a href="#">Home</a></li>
+<li><a href="#">Logout</a></li>
+<li class="active"><a href="#">Dashboard</a></li>
+<li><a href="#">About</a></li>
+{% endblock %}
+
+{% block menu_items %}
+<a href="{{url_for('dashboard.dash')}}" class="menu-item">Dashboard</a>
+<a href="{{url_for('dashboard.pickups')}}" class="menu-item ">All pickups</a>
+<a href="#" class="menu-item">Coupons</a>
+<a href="#" class="menu-item active-side">Settings</a>
+{% endblock %}
+
+{% block main_head %}
+Settings
+{% endblock %}
+
+{% block main_content %}
+    {% if u.addresses|length  == 0 %}
+        Hi, it seems like you have no address added, please <a href="{{url_for('dashboard.add_address')}}">add an address. </a>
+    {% else %}
+    <a href="{{url_for('dashboard.add_address')}}">Add an address.</a>
+    <ul class="collection">
+    {% for addr in u.addresses %}
+        <li class="collection-item">
+            <div>{{addr._address}}<a href="#!" class="secondary-content"><i class="material-icons">cancel</i></a></div>
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+{% endblock %}

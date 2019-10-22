@@ -1,7 +1,4 @@
 # Elink
 
-I am on the right track. 
-Need to add an adress model, link that up to the user model.
-Display the choice of adresses in the scheduling pickup form.
-
-Arghh it's getting too complicated, way more moving parts than initially concieved.
+Some issue with the add_address page, addr and zone both giving the value of zone. Fixing it is first priority. 
+After that everything can work.

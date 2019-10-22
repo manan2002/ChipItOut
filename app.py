@@ -3,6 +3,7 @@ import click
 from exts import db, login_manager
 from models.user import UserModel
 from models.pickup import PickupModel
+from models.address import AddressModel
 from views.auth import auth
 from views.dashboard import dashboard
 from werkzeug.security import generate_password_hash

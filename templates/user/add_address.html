@@ -1,0 +1,42 @@
+{% extends "auth/auth-layout.html" %}
+
+{% block nav %}
+<li><a href="#">Home</a></li>
+{% endblock %}
+
+
+
+{% block head_text %}
+<h1 class="white-text">Add address!</h1>
+{% endblock %}
+
+
+{% block card %}
+<form action="{{url_for('dashboard.add_address')}}" method="POST">
+    <div class="row">
+        <div class="input-field col s12">
+            <input type="text" name="addr" id = "address">
+            <label for="address">Address</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <select name="zone">
+                <option value="" disabled selected>Select Zone</option>
+                <option value="n">North Delhi</option>
+                <option value="e">East Delhi</option>
+                <option value="s">South Delhi</option>
+                <option value="w">West Delhi</option>
+            </select>
+            <label>Select zone</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn blue waves-effect waves-light" type="submit">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock %}
