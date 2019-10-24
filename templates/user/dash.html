@@ -15,14 +15,23 @@
 {% endblock %}
 
 {% block main_head %}
-Welcome, {{user.name}}!
+Welcome, {{u.name}}!
 {% endblock %}
 
 {% block main_content %}
-    {% if user.can_schedule == True%}
-    <p class="light">
-    Seems like you don't have any active pickups scheduled, request one today!</p>
-    <a class="waves-effect waves-light btn modal-trigger" href = "#pickup-form"><i class="material-icons left">cloud</i>Request a pickup!</a>
+    {% if u.adresses|length == 0 %}
+        <h5>
+        <a href = "{{url_for('dashboard.add_address')}}">Please first add an address to get started.</a>
+        </h5>
+        <!-- Yo
+        {% if u.can_schedule == True%}
+            <p class="light">
+                Seems like you don't have any active pickups scheduled, request one today!</p>
+            <a class="waves-effect waves-light btn modal-trigger" href="#pickup-form"><i
+                    class="material-icons left">cloud</i>Request a pickup!</a>
+        {% endif %} -->
+
     {% endif %}
+    
     
 {% endblock %}
