@@ -49,3 +49,8 @@ body{
     
     display: inline-block;
 }
+
+.active-pickup{
+    font-size: 1.2rem;
+}
+

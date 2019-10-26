@@ -16,6 +16,7 @@
 
 {% block main_head %}
 Welcome, {{u.name}}!
+<span class="right points blue-grey-text text-darken-1">EcoPoints: <b>{{u.points}}</b></span>
 {% endblock %}
 
 {% block main_content %}
@@ -34,7 +35,45 @@ Welcome, {{u.name}}!
             <a class="waves-effect waves-light btn modal-trigger" href="#pickup-form"><i
                     class="material-icons left">cloud</i>Request a pickup!</a>
             {% else %}
+                {% if active_pickup|length == 1 %}
+                {% set active_pickup = active_pickup[0] %}
+                    <div class="row active-pickup-area">
+                        <div class="col s12 m6">
+                            <div class="card teal lighten-1 active-pickup">
+                                <div class="card-content white-text z-depth-5">
+                                    <span class="card-title">Current pickup
 
+                                        <!-- <a href="{{ url_for('dashboard.del_pickup', pickup_id = active_pickup.id)}}" class = "right">
+                                            <i class="material-icons white-text">cancel</i>
+                                        </a> -->
+                                    </span>
+                                    <p>{{ active_pickup.description }}</p>
+                                    <hr color = "white">
+                                    <p>
+                                        Pickup scheduled: 
+                                        <b>
+                                    {{
+                                        active_pickup.scheduled_date.date()
+                                    }}
+                                        </b>
+                                    </p>
+                                    <p>
+                                        Address: 
+                                        <b>
+                                        {{ def_addr._address }}
+                                        </b>
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <a class="waves-effect waves-light btn-small orange darken-2" href = "{{ url_for('dashboard.del_pickup', pickup_id = active_pickup.id)}}"><i class="material-icons right">cancel</i>CANCEL</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% for p in previous_pickups %}
+
+                    {% endfor %}
             {% endif %}
     {% endif %}
     

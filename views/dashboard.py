@@ -18,14 +18,21 @@ def dash():
     if len(def_addr) >= 1:
         def_addr = def_addr[0]
     rest_addrs = list(filter(lambda x: x.default != True, user_addresses))
+    user_pickups = current_user.pickups
+    active_pickup = list(filter(lambda x: x.active == True, user_pickups))
+    previous_pickups = list(filter(lambda x: x.active == False, user_pickups))
+    print(active_pickup)    
     context = {
         'u': current_user,
         'need_address': need_addr,
         'def_addr': def_addr,
-        'rest_addrs': rest_addrs
-    }
+        'rest_addrs': rest_addrs,
+        'active_pickup' : active_pickup,
+        'previous_pickups': previous_pickups
+        }
     
     return render_template('user/dash.html', **context)
+
 
 @dashboard.route('/pickup', methods = ['POST', 'GET'])
 @login_required
@@ -78,6 +85,7 @@ def pickups():
     }
 
     return render_template('user/pickups.html', **context)
+
 
 @dashboard.route('/settings', methods = ['GET', 'POST'])
 @login_required
@@ -150,3 +158,14 @@ def del_address(addr_id):
         return redirect(url_for('dashboard.settings'))
     return redirect(url_for('index'))
 
+
+@dashboard.route('/delete_pickup/<int:pickup_id>', methods=['GET'])
+@login_required
+def del_pickup(pickup_id):
+    p = PickupModel.query.get(pickup_id)
+    if current_user == p.user:
+        db.session.delete(p)
+        current_user.can_schedule = True
+        db.session.commit()
+        return redirect(url_for('dashboard.dash'))
+    return redirect(url_for('index'))

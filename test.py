@@ -7,5 +7,6 @@ from exts import db
 
 with app.app_context():
     u = UserModel.query.all()[0]
-    print(u.name)
+    u.can_schedule = True
+    db.session.commit()
     
