@@ -27,6 +27,8 @@ Settings
     {% else %}
     <b>
     <a href="{{url_for('dashboard.add_address')}}">Add an address.</a></b>
+    <div class = "row">
+        <div class="col s6">
     <ul class="collection">
     {% for addr in u.addresses %}
         <li class="collection-item">
@@ -43,6 +45,8 @@ Settings
      
     {% endfor %}
     </ul>
+    </div>
+    </div>
     {% endif %}
     </div>
 

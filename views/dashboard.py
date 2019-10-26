@@ -1,28 +1,83 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from models.address import AddressModel
+from models.pickup import PickupModel
 from exts import db
-
+from datetime import datetime
+from helpers import find_pickup_date
 dashboard = Blueprint('dashboard', __name__)
 
 
 
 @dashboard.route('/dash')
 @login_required
-def dash():
+def dash(): 
+    user_addresses = current_user.addresses
+    need_addr = (len(user_addresses) == 0)
+    def_addr = list(filter(lambda x: x.default == True, user_addresses))
+    if len(def_addr) >= 1:
+        def_addr = def_addr[0]
+    rest_addrs = list(filter(lambda x: x.default != True, user_addresses))
     context = {
-        'u' : current_user
+        'u': current_user,
+        'need_address': need_addr,
+        'def_addr': def_addr,
+        'rest_addrs': rest_addrs
     }
-    print(len(current_user.addresses))
+    
     return render_template('user/dash.html', **context)
 
 @dashboard.route('/pickup', methods = ['POST', 'GET'])
 @login_required
 def pickups():
     if request.method == 'POST':
-        print(dict(request.form))
+        addr_id = request.form.get('address')
+        description = request.form.get('description')
+        if description == '':
+            return redirect(url_for('dashboard.dash'))
+        addr = AddressModel.query.get(addr_id)
+        zone = addr.zone
+        current_active_pickups = len(tuple(filter(lambda x: x.active == True, current_user.pickups)))
+        if current_active_pickups > 0:
+            return redirect(url_for('dashboard.dash'))
+        """
+        n --> Sunday 
+        s --> Saturday
+        e --> Friday 
+        w --> Thursday
+        """
+        if zone == 'n':
+            p_date = find_pickup_date('n')
+        if zone == 's':
+            p_date = find_pickup_date('s')
+        if zone == 'e':
+            p_date = find_pickup_date('e')
+        if zone == 'w':
+            p_date = find_pickup_date('w')
+        pickup = PickupModel(scheduled_date = p_date,
+                             user = current_user,
+                             description = description
+                             )
+        pickup.save()
+        current_user.can_schedule = False
+        db.session.commit()
+        return redirect(url_for('dashboard.dash'))
 
-    return render_template('user/pickups.html')
+
+    user_addresses = current_user.addresses
+    need_addr = (len(user_addresses) == 0)
+    def_addr = list(filter(lambda x: x.default == True, user_addresses))
+    if len(def_addr) >= 1:
+        def_addr = def_addr[0]
+    rest_addrs = list(filter(lambda x : x.default != True, user_addresses))
+    context = {
+        'u': current_user,
+        'need_address': need_addr,
+        'def_addr': def_addr,
+        'rest_addrs' : rest_addrs
+    }
+
+    return render_template('user/pickups.html', **context)
 
 @dashboard.route('/settings', methods = ['GET', 'POST'])
 @login_required
@@ -30,8 +85,18 @@ def settings():
     
     if request.method == 'POST':
         pass
+    
+    user_addresses = current_user.addresses
+    need_addr = (len(user_addresses) == 0)
+    def_addr = list(filter(lambda x: x.default == True, user_addresses))
+    if len(def_addr) >= 1:
+        def_addr = def_addr[0]
+    rest_addrs = list(filter(lambda x: x.default != True, user_addresses))
     context = {
-        'u' : current_user
+        'u': current_user,
+        'need_address': need_addr,
+        'def_addr': def_addr,
+        'rest_addrs': rest_addrs
     }
     return render_template('user/settings.html', **context)
 
@@ -44,6 +109,8 @@ def add_address():
         addr = request.form.get('addr')
         zone = request.form.get('zone')
         default = request.form.get('default')
+        if addr == '' or 'zone' not in request.form:
+            return redirect(url_for('dashboard.dash'))
         u = current_user
         if default == 'on':
             for address in u.addresses:
