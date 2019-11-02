@@ -6,6 +6,7 @@ from flask import jsonify
 class AddressModel(db.Model):
     __tablename__ = 'address'
     id = db.Column(db.Integer, primary_key=True)
+    label = db.Column(db.String, nullable = False)
     _address = db.Column(db.String(500), nullable = False)
     zone = db.Column(db.String(100), nullable = False)
     default = db.Column(db.Boolean, default = False)

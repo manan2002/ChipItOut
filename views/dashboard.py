@@ -117,7 +117,9 @@ def add_address():
         addr = request.form.get('addr')
         zone = request.form.get('zone')
         default = request.form.get('default')
-        if addr == '' or 'zone' not in request.form:
+        label = request.form.get('label')
+
+        if addr == '' or 'zone' not in request.form or label == '':
             return redirect(url_for('dashboard.dash'))
         u = current_user
         if default == 'on':
@@ -125,6 +127,7 @@ def add_address():
                 address.default = False
             db.session.commit()
             address = AddressModel(
+                label = label, 
                 _address=addr, 
                 zone=zone, 
                 default = True,
@@ -132,12 +135,14 @@ def add_address():
         else:
             if len(u.addresses) == 0:
                 address = AddressModel(
+                    label = label,
                     _address=addr,
                     zone=zone, 
                     user=current_user, 
                     default = True)
             else:
                 address = AddressModel(
+                    label = label,
                     _address=addr,
                     zone=zone,
                     user=current_user)

@@ -33,7 +33,7 @@ Settings
     {% for addr in u.addresses %}
         <li class="collection-item">
             <div>
-                <b>{{addr._address}}  </b>
+                <b>{{addr.label}}  </b>
                 {% if addr.default == True %}
                 | <span class="grey-text text-darken-1"> default</span>
                 {% endif %}
@@ -48,6 +48,4 @@ Settings
     </div>
     </div>
     {% endif %}
-    </div>
-
 {% endblock %}

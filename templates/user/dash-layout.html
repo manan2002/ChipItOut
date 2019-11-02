@@ -57,7 +57,7 @@
                                 <select name = "address">
                                     <option value="{{def_addr.id}}" selected>{{def_addr._address}}</option>
                                     {% for addr in rest_addrs %}
-                                    <option value="{{addr.id}}" selected>{{addr._address}}</option>
+                                    <option value="{{addr.id}}" selected>{{addr.label}}</option>
                                     {% endfor %}
                                 </select>
                                 <label>Select address</label>
