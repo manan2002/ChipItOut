@@ -11,6 +11,7 @@ class PickupModel(db.Model):
     active = db.Column(db.Boolean,default = True)
     completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable = False)
     description = db.Column(db.Text, nullable = False)
 
 

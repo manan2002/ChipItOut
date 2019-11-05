@@ -63,7 +63,8 @@ def pickups():
             p_date = find_pickup_date('w')
         pickup = PickupModel(scheduled_date = p_date,
                              user = current_user,
-                             description = description
+                             description = description,
+                             address = addr
                              )
         pickup.save()
         current_user.can_schedule = False
@@ -77,12 +78,15 @@ def pickups():
     if len(def_addr) >= 1:
         def_addr = def_addr[0]
     rest_addrs = list(filter(lambda x : x.default != True, user_addresses))
+    all_pickups = PickupModel.query.order_by(PickupModel.scheduled_date.desc()).all()
     context = {
         'u': current_user,
         'need_address': need_addr,
         'def_addr': def_addr,
-        'rest_addrs' : rest_addrs
+        'rest_addrs' : rest_addrs,
+        'all_pickups' : all_pickups
     }
+
 
     return render_template('user/pickups.html', **context)
 

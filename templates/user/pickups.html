@@ -17,3 +17,34 @@
 {% block main_head %}
 All pickups
 {% endblock %}
+
+{% block main_content %}
+<div class="row">
+    <div class="col s10">
+        <ul class="collection all_pickups">
+            {% for p in all_pickups %}
+            {% if p.active == True %}
+            <li class="collection-item active">
+                {{p.description}}
+                <br>
+                Scheduled date: <b>{{p.scheduled_date.date()}}</b>
+                <br>
+                Address: <b>{{p.address.label}}</b>
+                <a href="{{url_for('dashboard.del_pickup', pickup_id = p.id)}}" class="secondary-content valign-wrapper">cancel</a>
+            </li>
+            {% else %}
+            <li class="collection-item">
+                {{p.description}}
+                <br>
+                Date picked-up: <b>{{p.scheduled_date.date()}}</b>
+                <br>
+                Address: <b>{{p.address.label}}</b>
+                <br>
+                <b>+10 EcoPoints</b>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

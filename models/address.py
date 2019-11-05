@@ -11,6 +11,7 @@ class AddressModel(db.Model):
     zone = db.Column(db.String(100), nullable = False)
     default = db.Column(db.Boolean, default = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    pickups = db.relationship('PickupModel', backref='address')
     
     
     def save(self):
