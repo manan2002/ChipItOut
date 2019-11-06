@@ -8,7 +8,7 @@ from models.quote import QuoteModel
 from views.auth import auth
 from views.dashboard import dashboard
 from werkzeug.security import generate_password_hash
-
+from datetime import datetime
 from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
@@ -66,6 +66,7 @@ def createUser(count=1):
         u = u.save()
         print(f'User - {u} created.')
 
+
 @app.cli.command('list-users')
 @click.option('--count', default = -1)
 def listUsers(count):
@@ -79,6 +80,66 @@ def listUsers(count):
         print(u)
 
 
+@app.cli.command('add-data')
+def add_data():
+    name, email, pw = 'Manan', 'gouhari21@hotmail.com', 'manpra15'
+    pw_hash = generate_password_hash(pw)
+    u = UserModel(
+        email=email, 
+        name=name, 
+        password=pw_hash)
+    u.save()
+    label, addr, zone = 'Home', 'J-35, Rajouri Garden', 'n'
+    address = AddressModel(
+        label=label,
+        _address=addr,
+        zone=zone,
+        user=u,default=True)
+    address.save()
+    label, addr, zone = 'Office', 'F-132, Rajouri Garden', 'n'
+    address = AddressModel(
+        label=label,
+        _address=addr,
+        zone=zone,
+        user=u)
+    address.save()
+    
+    home_addr = AddressModel.query.filter_by(label='Home').first()
+    office_addr = AddressModel.query.filter_by(label='Office').first()
+
+    dt = datetime(2019, 10, 3)
+    p = PickupModel(
+        scheduled_date=dt,
+        user=u,
+        address=home_addr,
+        active=False,
+        description='A fridge',
+        completed=True
+    )
+    db.session.add(p)
+
+    dt = datetime(2019, 10, 10)
+    p = PickupModel(
+        scheduled_date=dt,
+        user=u,
+        address=office_addr,
+        active=False,
+        description='An old phone',
+        completed=True
+    )
+    db.session.add(p)
+
+    dt = datetime(2019, 10, 22)
+    p = PickupModel(
+        scheduled_date=dt,
+        user=u,
+        address=home_addr,
+        active=False,
+        description='10 AA batteries',
+        completed=True
+    )
+    db.session.add(p)
+    db.session.commit()
 
 @app.cli.command('restart-db')
 def restartDB():
