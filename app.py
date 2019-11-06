@@ -4,9 +4,12 @@ from exts import db, login_manager
 from models.user import UserModel
 from models.pickup import PickupModel
 from models.address import AddressModel
+from models.quote import QuoteModel
 from views.auth import auth
 from views.dashboard import dashboard
 from werkzeug.security import generate_password_hash
+
+from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
 
@@ -33,6 +36,12 @@ General routes.
 def index():
     return render_template('general/index.html')
 
+@app.route('/quote')
+def quote():
+    q = QuoteModel.query.order_by(func.random()).first()
+    return jsonify({
+        'quote' : q.text
+    })
 
 """
 Custom CLI Commands below.
