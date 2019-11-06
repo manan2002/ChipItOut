@@ -3,7 +3,7 @@ from exts import db
 from models.quote import QuoteModel
 
 with app.app_context():
-    """
+    
     q = QuoteModel(
         text='“The greatest threat to our planet is the belief that someone else will save it.”'
         )
@@ -40,5 +40,5 @@ with app.app_context():
         text='“At its core, the issue of a clean environment is a matter of public health.”'
     )
     q.save()
-    """
+
 

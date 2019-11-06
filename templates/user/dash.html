@@ -75,7 +75,35 @@ Welcome, {{u.name}}!
             {% endif %}
     {% endif %}
     <div class="quote-area">
-        <h1>QUOTE</h1>
+     
     </div>
     
+{% endblock %}
+{% block scripts %}
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const url = 'http://127.0.0.1:5000/quote'
+        const req = new XMLHttpRequest()
+        req.open('GET', url , true)
+        console.log('Opening req')
+        req.onload = () => {
+            const resp = JSON.parse(req.response)
+            console.log(`Parsed data: ${resp}`)
+            const quote = resp['quote']
+            const q = document.createElement('h4')
+            q.innerHTML = quote;
+            q.classList.add('visible')
+            
+            const q_area = document.querySelector('.quote-area')
+            q_area.appendChild(q)
+            console.log('DONE.')
+        }
+        
+        req.send()
+    });
+
+
+</script>
+
 {% endblock %}

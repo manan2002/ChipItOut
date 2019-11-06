@@ -60,3 +60,9 @@ body{
 .quote-area{
     margin-top: 10%
 }
+
+.visible{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.7s, visibility 0.1s ease-in;
+}
