@@ -2,6 +2,11 @@
 
 {% block links %}
 <link href = "{{url_for('static', filename = 'styles/index.css')}}" rel = "stylesheet">
+<style>
+    .mission-description{
+        font-size:1.4rem;
+    }
+</style>
 {% endblock %}
 
 {% block nav %}
@@ -15,7 +20,7 @@
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
-        <h1 class="header center">E-Link</h1>
+        <h1 class="header center">Chip It Up</h1>
         <div class="row center">
             <h5 class="header col s12">We handle your ewaste.</h5>
         </div>
@@ -32,46 +37,22 @@
 
 <div class="container">
     <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                    <h5 class="center">Speeds up development</h5>
-
-                    <p class="light">We did most of the heavy lifting for you to provide a default stylings that
-                        incorporate our custom components. Additionally, we refined animations and transitions to
-                        provide a smoother experience for developers.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                    <h5 class="center">User Experience Focused</h5>
-
-                    <p class="light">By utilizing elements and principles of Material Design, we were able to create a
-                        framework that incorporates components and animations that provide more feedback to users.
-                        Additionally, a single underlying responsive system across all platforms allow for a more
-                        unified user experience.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                    <h5 class="center">Easy to work with</h5>
-
-                    <p class="light">We have provided detailed documentation as well as specific code examples to help
-                        new users get started. We are also always open to feedback and can answer any questions a user
-                        may have about Materialize.</p>
-                </div>
-            </div>
-        </div>
-
+        <h3>Our Mission</h3>
+        <p class="mission-description">
+            We aim to minimize the disposal of <b>e-waste</b> along with traditional waste produced at households to normal dumping sites.
+            <br>
+            Now that may not seem like a big deal, but it has a lot of <span class="red-text">negatives</span>. 
+            <br>
+            <p class = "effects">
+            <h4>For instance, </h4>
+            <ul class="collection">
+                <li class="collection-item">Seeps into the <span class = "blue-text">groundwater</span> making it <span class = "red-text">toxic</span>.</li>
+                <li class="collection-item">Produces <span class = "red-text">radiations.</span></li>
+                <li class="collection-item">Causes <span class="red-text">severe diseases like cancer.</span> </li>
+            </ul>
+            </p>
+        </p>
     </div>
-    <br><br>
 </div>
 
 

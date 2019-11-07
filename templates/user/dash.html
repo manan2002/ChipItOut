@@ -31,7 +31,9 @@ Welcome, {{u.name}}!
     {% else %}
             {% if u.can_schedule == True%}
             <p class="light">
-                Seems like you don't have any active pickups scheduled, request one today!</p>
+                <h5>Seems like you don't have any active pickups scheduled, request one today!
+                    </h5>
+                </p>
             <a class="waves-effect waves-light btn modal-trigger" href="#pickup-form"><i
                     class="material-icons left">cloud</i>Request a pickup!</a>
             {% else %}
@@ -94,7 +96,7 @@ Welcome, {{u.name}}!
             const q = document.createElement('h4')
             q.innerHTML = quote;
             q.classList.add('visible')
-            
+
             const q_area = document.querySelector('.quote-area')
             q_area.appendChild(q)
             console.log('DONE.')
