@@ -82,7 +82,7 @@ def listUsers(count):
 
 @app.cli.command('add-data')
 def add_data():
-    name, email, pw = 'Manan', 'gouhari21@hotmail.com', 'manpra15'
+    name, email, pw = 'Man', 'demo@hotmail.com', 'demopass'
     pw_hash = generate_password_hash(pw)
     u = UserModel(
         email=email, 
